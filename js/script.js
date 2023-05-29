@@ -302,4 +302,32 @@ $('#slider-parallax').stellar();
   });
  
 });
-	
+const submitformbtn = document.getElementById("sendmail");
+    // Add event listener for form submission
+    submitformbtn.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+        console.log("hello")
+        // Get the input values
+        const fullName = document.getElementById('fullName').value;
+       
+        const emailSubject = document.getElementById('emailSubject').value;
+        const emailAdress = document.getElementById('emailAdress').value;
+        const message = document.getElementById('message').value;
+        console.log(emailSubject);
+        console.log(emailAdress);
+        console.log(message);
+
+        // Construct the email content
+        const emailContent = `Hi, I'm ${fullName}, and my adress mail is ${emailAdress}.\n\n${message}`;
+
+        // Construct the mailto: link
+        Email.send({
+            SecureToken : "95049a23-5daf-48c1-be8e-1fbb1c8be801",
+            To : 'challoufnour34@gmail.com',
+            From : 'challoufnour34@gmail.com',
+            Subject : emailSubject,
+            Body : emailContent
+        }).then(
+          message => alert(message)
+        );
+    });
